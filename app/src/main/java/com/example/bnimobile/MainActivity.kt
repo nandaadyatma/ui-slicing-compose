@@ -43,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.bnimobile.data.Data
 import com.example.bnimobile.model.Menu
 import com.example.bnimobile.ui.Montserrat
 import com.example.bnimobile.ui.components.MenuItem
@@ -219,20 +220,24 @@ fun HomeCard(data: HomeCardData) {
 
 @Composable
 fun HomeMenus(modifier: Modifier = Modifier) {
-    val menus = listOf<Menu>(
-        Menu(title = "Transfer", background = R.drawable.background_menu, icon = R.drawable.transfer),
-        Menu(title = "E-Wallet", background = R.drawable.background_menu, icon = R.drawable.transfer),
-        Menu(title = "Pembayaran", background = R.drawable.background_menu, icon = R.drawable.transfer),
-        Menu(title = "Pembelian", background = R.drawable.background_menu, icon = R.drawable.transfer),
-        Menu(title = "Investasi", background = R.drawable.background_menu, icon = R.drawable.transfer),
-    )
+    val menus = Data.menu
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-        LazyVerticalGrid(columns = GridCells.Fixed(4), content = {
-            items(menus) { menu ->
-                MenuItem(background = menu.background, icon = menu.icon, title = menu.title)
-            }
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(4),
+            content = {
+                items(menus) { menu ->
+                    MenuItem(
+                        background = menu.background,
+                        icon = menu.icon,
+                        title = menu.title
+                    )
+                }
 
-        }, horizontalArrangement = Arrangement.SpaceEvenly, contentPadding = PaddingValues(15.dp), verticalArrangement =  Arrangement.spacedBy(16.dp))
+            },
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            contentPadding = PaddingValues(6.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        )
     }
 
 
